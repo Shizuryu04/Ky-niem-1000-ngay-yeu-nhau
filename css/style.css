@@ -574,7 +574,28 @@ section { padding-top: var(--base-padding); padding-bottom: var(--base-padding);
     background-image: url('https://i.pinimg.com/originals/14/3e/0b/143e0b259ac9e7896d55c7e82593ff59.png'); /* Trái tim nhỏ */
     background-size: contain; background-repeat: no-repeat; background-position: center;
 }
+.video-section .video-intro { /* Hoặc chỉ .video-intro nếu bạn không đặt nó trong ngữ cảnh section */
+    /* Giữ lại các style cũ nếu có và phù hợp */
+    opacity: 0.95; /* Có thể giữ nguyên hoặc tăng nhẹ */
+    max-width: 700px; /* Có thể giữ nguyên hoặc tăng nhẹ nếu muốn dòng chữ rộng hơn */
 
+    /* === Đảm bảo căn giữa === */
+    text-align: center; /* Căn giữa nội dung text bên trong thẻ <p> */
+    margin-left: auto;  /* Căn giữa chính khối <p> đó so với container cha */
+    margin-right: auto; /* Căn giữa chính khối <p> đó so với container cha */
+
+    /* === Điều chỉnh khoảng cách === */
+    margin-top: -1em; /* Giữ lại hoặc điều chỉnh nếu cần (khoảng cách với tiêu đề trên) */
+    margin-bottom: 3em; /* << Tăng khoảng cách phía dưới để tạo không gian cho video */
+
+    /* === THAY ĐỔI CHÍNH: Kích thước và độ đậm === */
+    font-size: 1.6rem;  /* << Tăng kích thước chữ lên đáng kể (ví dụ: từ 1.1rem lên 1.6rem) */
+                         /* Bạn có thể thử 1.5rem, 1.7rem,... tùy ý */
+    font-weight: 500;   /* << Có thể tăng nhẹ độ đậm (tùy font, 500 là hơi đậm hơn 400) */
+    color: var(--text-light); /* Đảm bảo màu chữ phù hợp với nền tối của section video */
+    line-height: 1.5;   /* << Điều chỉnh chiều cao dòng nếu cần khi font to hơn */
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.4); /* Thêm hoặc tăng nhẹ shadow cho dễ đọc */
+}
 /* --- Section Gallery (`#gallery`) --- */
 /* Áp dụng .section-content-wrapper */
 #gallery .section-content-wrapper {
@@ -600,7 +621,7 @@ section { padding-top: var(--base-padding); padding-bottom: var(--base-padding);
 .video-wrapper {
     /* === THAY ĐỔI CHÍNH === */
     max-width: 450px; /* <-- ĐẶT CHIỀU RỘNG TỐI ĐA BẠN MUỐN CHO VIDEO DỌC */
-    max-height: 1600px ;
+    max-height: 1000px ;
                      /* Ví dụ: 360px, 400px, 320px, 50%... */
     margin-left: auto;   /* Căn giữa container */
     margin-right: auto;  /* Căn giữa container */
@@ -616,19 +637,32 @@ section { padding-top: var(--base-padding); padding-bottom: var(--base-padding);
 }
 
 /* Style cho chính thẻ <video> bên trong .video-wrapper */
-.video-wrapper video {
-    display: block; /* Loại bỏ khoảng trống thừa có thể có bên dưới */
-    width: 100%;    /* Quan trọng: Video sẽ luôn chiếm 100% chiều rộng của .video-wrapper */
-    height: auto;   /* Quan trọng: Chiều cao sẽ tự điều chỉnh để giữ đúng tỷ lệ khung hình dọc */
-    border-radius: inherit; /* Bo góc theo container */
-}
-    /* Thêm class wavy-border... nếu muốn */
-/* Nhớ thêm các <div class="deco-item size-... pos-..."> vào trong #video .section-content-wrapper trong HTML */
-.video-intro { text-align: center; max-width: 650px; margin: -1em auto 2.5em; color: var(--cute-text-dark); font-size: 1.15rem; }
 .video-wrapper {
-    max-width: 900px; margin: 0 auto; border-radius: var(--border-radius-soft); overflow: hidden;
-    box-shadow: 0 12px 35px rgba(0,0,0,0.18); border: 8px solid var(--cute-content-cream);
-    outline: 4px solid var(--cute-accent-pink); position: relative; background-color: #333;
+    max-width: 800px;
+    margin: 0 auto;
+    border-radius: var(--border-radius-rounder); /* Giữ lại bo góc */
+    overflow: hidden; /* Giữ lại overflow */
+    box-shadow: 0 12px 45px var(--cute-shadow-color); /* Giữ lại shadow */
+    border: 2px solid var(--cute-border-color); /* Giữ lại viền */
+    position: relative; /* Đã có sẵn, cần để chứa iframe */
+    /* === THÊM HOẶC CHỈNH SỬA CÁC THUỘC TÍNH SAU === */
+    padding-top: 56.25%; /* Tỷ lệ 16:9 (9 / 16 * 100) */
+    height: 0; /* Quan trọng: đặt chiều cao về 0 */
+}
+
+.video-wrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0; /* Bỏ viền mặc định của iframe */
+}
+
+/* Đảm bảo các ảnh trang trí của section video vẫn hiển thị đúng */
+.video-section .deco-item {
+   z-index: 1; /* Đặt z-index thấp hơn iframe nếu cần, hoặc điều chỉnh vị trí */
+   /* Hoặc nếu muốn nó đè lên video thì z-index cao hơn 0 */
 }
 
 /* --- Section Closing (`#closing`) --- */

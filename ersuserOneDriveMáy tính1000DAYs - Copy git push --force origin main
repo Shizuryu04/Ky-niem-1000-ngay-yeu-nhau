@@ -1,0 +1,17 @@
+[33mcommit 7b27e11206973a6cac068ea979314d7d0078adb0[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m)[m
+Author: Shizuryn04 <ngocbaodangminh@gmail.com>
+Date:   Sat May 3 05:22:46 2025 +0700
+
+    Add large videos using Git LFS
+
+[33mcommit ccece7c323fa18671e1b800a9e008f07ebce2fdf[m
+Author: Shizuryn04 <ngocbaodangminh@gmail.com>
+Date:   Sat May 3 04:48:58 2025 +0700
+
+    Integrate YouTube video via iframe and setup Git
+
+[33mcommit 775f040aab1ca11d6a2966697074650dec6c6dd1[m
+Author: Shizuryn04 <ngocbaodangminh@gmail.com>
+Date:   Sat May 3 03:56:28 2025 +0700
+
+    Initial commit: Add project files for 1000-day website

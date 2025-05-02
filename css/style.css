@@ -1,0 +1,771 @@
+/* =============================================== */
+/*             STYLE.CSS - PHIÊN BẢN MỚI         */
+/* =============================================== */
+
+/* --- Import Fonts (Vietnamese Supported) --- */
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;700&family=Quicksand:wght@400;500;700&display=swap');
+
+/* --- Biến Màu và Thiết Lập Toàn Cục --- */
+:root {
+    /* === Bảng màu Cute (Đậm đà, đa dạng) === */
+    --cute-bg-pink: #f8c8dc;        /* Hồng nền chính */
+    --cute-content-cream: #fff5f8;    /* Kem/Trắng hồng nhạt cho nội dung */
+    --cute-accent-brown: #8a5a44;     /* Nâu ấm */
+    --cute-accent-pink: #ff70a6;     /* Hồng nhấn mạnh - Tươi */
+    --cute-darker-pink: #e66093;    /* Hồng đậm hơn */
+    --cute-soft-pink: #ffd1e3;       /* Hồng rất nhạt (dùng cho gradient/chi tiết) */
+    --cute-gradient-start: #ffd6e5;   /* Màu gradient 1 */
+    --cute-gradient-end: #ffacbf;     /* Màu gradient 2 */
+    --cute-text-dark: var(--cute-accent-brown);
+    --cute-text-light: #ffffff;
+    --cute-shadow-color: rgba(138, 90, 68, 0.18); /* Bóng đổ nâu đậm hơn chút */
+    --cute-border-color: rgba(255, 112, 166, 0.4); /* Viền hồng rõ hơn */
+    --placeholder-bg: rgba(0, 0, 0, 0.05); /* Màu nền cho placeholder ảnh */
+    --placeholder-border: rgba(0, 0, 0, 0.1); /* Màu viền cho placeholder ảnh */
+
+    /* === Fonts === */
+    --font-heading: 'Baloo 2', cursive;
+    --font-body: 'Quicksand', sans-serif;
+
+    /* === Khác === */
+    --base-padding: 80px;           /* Tăng padding section */
+    --content-padding: 50px;        /* Padding lớn hơn cho vùng nội dung */
+    --container-width: 1140px;      /* Tăng nhẹ container */
+    --border-radius-soft: 25px;     /* Bo tròn mềm mại hơn */
+    --border-radius-rounder: 50px;    /* Bo tròn nhiều hơn */
+    --transition-cute: 0.4s cubic-bezier(0.25, 0.8, 0.25, 1); /* Transition mượt hơn */
+}
+
+/* --- Reset & Cơ bản --- */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+
+body {
+    font-family: var(--font-body);
+    color: var(--cute-text-dark);
+    line-height: 1.75; /* Thoáng hơn */
+    background-color: var(--cute-bg-pink);
+    background-image: url('../images/decorations/subtle-pattern.png'); /* Thay pattern của bạn */
+    background-repeat: repeat;
+    background-attachment: fixed;
+    overflow-x: hidden; /* QUAN TRỌNG: Cần thiết khi đẩy deco ra ngoài */
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    line-height: 1.3;
+    color: var(--cute-accent-brown);
+    margin-bottom: 0.8em;
+}
+
+h2.section-title {
+    font-size: 3.2rem; /* Tăng cỡ chữ */
+    margin-bottom: 1.8em; /* Tăng khoảng cách dưới */
+    text-align: center; /* LUÔN CĂN GIỮA */
+    width: 100%;
+    position: relative;
+    padding: 15px 0;
+    color: var(--cute-accent-pink);
+    text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.6); /* Bóng đổ sáng rõ hơn */
+    letter-spacing: 1px;
+}
+
+p { margin-bottom: 1.4em; font-weight: 500; }
+a { color: var(--cute-accent-pink); text-decoration: none; font-weight: 700; transition: color var(--transition-cute); }
+a:hover { color: var(--cute-darker-pink); }
+img, video { max-width: 100%; height: auto; display: block; border-radius: calc(var(--border-radius-soft) / 2); /* Bo góc nhẹ mặc định */}
+
+/* --- Container Chung --- */
+.container { width: 100%; max-width: var(--container-width); margin: 0 auto; padding: 0 25px; }
+
+/* --- Vùng Nội Dung Chính Bên Trong Section --- */
+/* Lưu ý: Wrapper này thường được đặt bên trong .container của section */
+.section-content-wrapper {
+    background: linear-gradient(180deg, #fff 10%, var(--cute-content-cream) 100%); /* Gradient nền kem */
+    padding: var(--content-padding);
+    border-radius: var(--border-radius-rounder);
+    box-shadow: 0 12px 45px var(--cute-shadow-color); /* Bóng đổ rõ hơn */
+    position: relative; /* QUAN TRỌNG: Để định vị .deco-item bên trong nó */
+    margin-top: 30px;
+    border: 2px solid var(--cute-border-color); /* Viền hồng rõ hơn */
+    /* Thêm viền trang trí bên trong nếu muốn */
+    /* outline: 3px dashed var(--cute-soft-pink); */
+    /* outline-offset: -10px; */
+    /* Thêm một chút padding để nội dung không bị ảnh chạm vào nếu ảnh lấn vào quá nhiều */
+    /* padding: calc(var(--content-padding) + 20px); */
+}
+
+/* --- Viền Sóng Trang Trí --- */
+/* Áp dụng class này vào .section-content-wrapper nếu muốn có viền */
+.section-content-wrapper.wavy-border-top::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 35px; /* Cao hơn */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 35' preserveAspectRatio='none'%3E%3Cpath d='M0,20 Q25,35 50,20 T100,20 L100,35 L0,35 Z' fill='%23f8c8dc'/%3E%3C/svg%3E"); /* --cute-bg-pink */
+    background-repeat: repeat-x; z-index: 1; /* Nằm trên wrapper nhưng dưới deco-item */
+    transform: translateY(-100%); /* Đẩy lên trên */
+    border-radius: var(--border-radius-rounder) var(--border-radius-rounder) 0 0; /* Bo góc theo parent */
+    pointer-events: none; /* Cho phép click xuyên qua */
+}
+.section-content-wrapper.wavy-border-bottom::after {
+    content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 35px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 35' preserveAspectRatio='none'%3E%3Cpath d='M0,15 Q25,0 50,15 T100,15 L100,0 L0,0 Z' fill='%23f8c8dc'/%3E%3C/svg%3E"); /* --cute-bg-pink */
+    background-repeat: repeat-x; z-index: 1;
+    transform: translateY(100%); /* Đẩy xuống dưới */
+    border-radius: 0 0 var(--border-radius-rounder) var(--border-radius-rounder);
+    pointer-events: none;
+}
+
+/* =============================================== */
+/*   ẢNH TRANG TRÍ (DECO ITEMS) - ĐÃ CẬP NHẬT V4   */
+/* =============================================== */
+
+/* --- Ảnh Trang Trí Section (Base Style) --- */
+.deco-item {
+    position: absolute;
+    z-index: 10; /* Nằm trên viền sóng và các nội dung khác */
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    transition: transform 0.6s var(--transition-cute), opacity 0.4s ease;
+    pointer-events: none; /* Mặc định không tương tác */
+    /* Placeholder mặc định - Bạn sẽ thay bằng background-image */
+    background-color: var(--placeholder-bg);
+    border: 1px dashed var(--placeholder-border);
+    border-radius: 15px; /* Bo góc nhẹ cho placeholder */
+    opacity: 0.9; /* Hơi mờ khi là placeholder */
+}
+/* Hiệu ứng khi hover vào section chứa ảnh trang trí (tùy chọn) */
+/* .section-content-wrapper:hover .deco-item { */
+    /* transform: scale(1.05) rotate(3deg); */
+/* } */
+
+/* --- Vị Trí & Kích Thước Ảnh Trang Trí --- */
+/* Lưu ý: Vị trí là tương đối so với .section-content-wrapper */
+
+/* === Kích Thước Lớn (~240px) === */
+.deco-item.size-lg { width: 200px; height: 200px; }
+
+/* Giá trị âm RẤT LỚN -> đẩy ảnh ra RẤT XA viền */
+.deco-item.pos-top-left {
+    top: -140px;   /* Tăng mạnh độ âm */
+    left: -150px;  /* Tăng mạnh độ âm */
+    transform: rotate(10deg); /* Tăng góc xoay nhẹ */
+}
+.deco-item.pos-top-right {
+    top: -140px;
+    right: -150px;
+    transform: rotate(15deg);
+}
+.deco-item.pos-bottom-left {
+    bottom: -150px; /* Tăng mạnh độ âm */
+    left: -150px;   /* Tăng mạnh độ âm */
+    transform: rotate(12deg);
+}
+.deco-item.pos-bottom-right {
+    bottom: -150px;
+    right: -150px;
+    transform: rotate(-12deg);
+}
+
+/* === Kích Thước Vừa (~100px) === */
+.deco-item.size-md { width: 120px; height: 120px; }
+
+/* Vị trí góc cho size vừa - Giá trị âm LỚN HƠN */
+.deco-item.size-md.pos-top-left {
+    top: -75px;   /* Tăng mạnh độ âm */
+    left: -85px;  /* Tăng mạnh độ âm */
+    transform: rotate(10deg);
+}
+.deco-item.size-md.pos-top-right {
+    top: -75px;
+    right: -85px;
+    transform: rotate(18deg);
+}
+.deco-item.size-md.pos-bottom-left {
+    bottom: -80px; /* Tăng mạnh độ âm */
+    left: -90px;  /* Tăng mạnh độ âm */
+    transform: rotate(15deg);
+}
+.deco-item.size-md.pos-bottom-right {
+    bottom: -80px;
+    right: -90px;
+    transform: rotate(-15deg);
+}
+
+/* Vị trí đặc biệt cho size vừa - Giá trị âm LỚN HƠN */
+.deco-item.size-md.pos-mid-left {
+    top: 50%;
+    left: -200px; /* Tăng mạnh độ âm */
+    transform: translateY(-50%) rotate(-10deg);
+}
+.deco-item.size-md.pos-mid-right {
+    top: 50%;
+    right: -100px; /* Tăng mạnh độ âm */
+    transform: translateY(-50%) rotate(10deg);
+}
+.deco-item.size-md.pos-top-centerish {
+    top: -85px; /* Tăng mạnh độ âm */
+    left: 50%;
+    transform: translateX(-50%) rotate(7deg);
+}
+.deco-item.size-md.pos-bottom-centerish {
+    bottom: -85px; /* Tăng mạnh độ âm */
+    left: 50%;
+    transform: translateX(-50%) rotate(-7deg);
+}
+/* ====================================================== */
+/*   BỔ SUNG: 16 VỊ TRÍ MỚI - XA TRUNG TÂM, SÁT VIỀN     */
+/*   Áp dụng cho .deco-item.size-md (120x120px)         */
+/*   Thêm vào sau các khai báo vị trí đã có             */
+/* ====================================================== */
+
+/* --- Góc Rất Xa (Far Corners) --- */
+/* Đẩy ra xa hơn nữa so với các vị trí góc hiện có */
+.deco-item.size-md.pos-outer-tl {
+    top: -170px;    /* Âm nhiều hơn */
+    left: -300px;   /* Âm nhiều hơn */
+    transform: rotate(-22deg); /* Xoay khác đi */
+}
+.deco-item.size-md.pos-outer-tr {
+    top: -130px;
+    right: -320px;
+    transform: rotate(22deg);
+}
+.deco-item.size-md.pos-outer-bl {
+    bottom: -145px;
+    left: -310px;
+    transform: rotate(20deg);
+}
+.deco-item.size-md.pos-outer-br {
+    bottom: -145px;
+    right: -350px;
+    transform: rotate(-20deg);
+}
+
+/* --- Dọc Theo Cạnh Trên Xa (Far Top Edge) --- */
+/* Sử dụng % để phân bố dọc cạnh trên, với offset âm lớn */
+.deco-item.size-md.pos-outer-top-l { /* Lệch trái */
+    top: -150px; /* Rất xa lên trên */
+    left: 14%;   /* Vị trí % từ trái */
+    transform: rotate(10deg);
+}
+.deco-item.size-md.pos-outer-top-cl { /* Gần trung tâm trái */
+    top: -160px;
+    left: 40%;
+    transform: translateX(-50%) rotate(-6deg); /* Dùng transform để căn tương đối */
+}
+.deco-item.size-md.pos-outer-top-cr { /* Gần trung tâm phải */
+    top: -160px;
+    right: 37%; /* Hoặc left: 65% */
+    transform: translateX(50%) rotate(6deg);
+}
+.deco-item.size-md.pos-outer-top-r { /* Lệch phải */
+    top: -150px;
+    right: 10%; /* Vị trí % từ phải */
+    transform: rotate(-10deg);
+}
+
+/* --- Dọc Theo Cạnh Dưới Xa (Far Bottom Edge) --- */
+/* Tương tự cạnh trên nhưng ở dưới */
+.deco-item.size-md.pos-outer-bottom-l {
+    bottom: -155px; /* Rất xa xuống dưới */
+    left: 12%;
+    transform: rotate(-14deg);
+}
+.deco-item.size-md.pos-outer-bottom-cl {
+    bottom: -165px;
+    left: 40%;
+    transform: translateX(-50%) rotate(8deg);
+}
+.deco-item.size-md.pos-outer-bottom-cr {
+    bottom: -165px;
+    right: 40%;
+    transform: translateX(50%) rotate(-8deg);
+}
+.deco-item.size-md.pos-outer-bottom-r {
+    bottom: -155px;
+    right: 12%;
+    transform: rotate(14deg);
+}
+
+/* --- Dọc Theo Cạnh Trái Xa (Far Left Edge) --- */
+/* Sử dụng % top/bottom và offset âm lớn cho left */
+.deco-item.size-md.pos-outer-left-t { /* Gần góc trên */
+    top: 20%; /* Vị trí % từ trên */
+    left: -300px; /* Rất xa sang trái */
+    transform: rotate(-16deg);
+}
+.deco-item.size-md.pos-outer-left-b { /* Gần góc dưới */
+    bottom: 20%; /* Vị trí % từ dưới */
+    left: -300px;
+    transform: rotate(12deg);
+}
+
+/* --- Dọc Theo Cạnh Phải Xa (Far Right Edge) --- */
+/* Tương tự cạnh trái */
+.deco-item.size-md.pos-outer-right-t {
+    top: 20%;
+    right: -300px; /* Rất xa sang phải */
+    transform: rotate(16deg);
+}
+.deco-item.size-md.pos-outer-right-b {
+    bottom: 20%;
+    right: -300px;
+    transform: rotate(-12deg);
+}
+
+
+/* --- Cách Sử Dụng Trong HTML --- */
+/* (Không thay đổi) */
+/* <div class="section-content-wrapper wavy-border-top wavy-border-bottom">
+       Nội dung section...
+
+       <div class="deco-item size-lg pos-top-left" style="background-image: url('../images/decorations/your-large-image-tl.png');"></div>
+       <div class="deco-item size-md pos-bottom-right" style="background-image: url('../images/decorations/your-medium-image-br.png');"></div>
+       <div class="deco-item size-md pos-mid-left" style="background-image: url('../images/decorations/your-medium-image-ml.png');"></div>
+   </div>
+*/
+
+/* =============================================== */
+/*   CSS TIẾP THEO (Giữ nguyên từ đây)           */
+/* =============================================== */
+
+/* --- Responsive --- */
+/* (Giữ nguyên phần responsive bạn đã cung cấp, nó đã được điều chỉnh cho cấu trúc mới) */
+/* LƯU Ý: Với việc đẩy ảnh ra xa như vậy, bạn CẦN kiểm tra kỹ responsive
+   và có thể sẽ cần điều chỉnh lại các giá trị âm trong @media query
+   để chúng không bị đẩy ra quá xa hoặc ẩn đi quá sớm trên màn hình nhỏ hơn */
+/* ... (Giữ nguyên) ... */
+
+/* =============================================== */
+/*   CSS TIẾP THEO (Giữ nguyên từ đây)           */
+/* =============================================== */
+
+/* --- Định nghĩa HÌNH ẢNH cho TỪNG SECTION --- */
+/* ... (Phần này giữ nguyên như bạn đã cung cấp trước đó) ... */
+
+/* =============================================== */
+/*   CSS TIẾP THEO - ĐÃ ĐỒNG BỘ & CHÈN ẢNH       */
+/* =============================================== */
+
+/* --- Định nghĩa HÌNH ẢNH cho TỪNG SECTION --- */
+/* Sử dụng hệ thống class: .deco-item .size-[lg/md] .pos-[...] */
+
+/* --- Section Hero Decorations --- */
+#hero .hero-content .deco-item.size-lg.pos-top-left { background-image: url('https://cdn-img.upanhlaylink.com/img/image_20250502d587be331a4f11262be00d9a589352bf.jpg'); } /* Chiikawa lớn đang bay */
+#hero .hero-content .deco-item.size-md.pos-top-right { background-image: url('https://cdn-img.upanhlaylink.com/img/image_202505022b1fc761bff1a8afa230c2022e38b62a.jpg'); transform: rotate(10deg) scaleX(-1);} /* Hachiware nhỏ vẫy tay, lật ngược */
+#hero .hero-content .deco-item.size-md.pos-bottom-right { background-image: url('https://cdn-img.upanhlaylink.com/img/image_20250502a951570d1fd4cd0e8c74de37a63c3442.jpg'); transform: rotate(-8deg);} /* Chiikawa nhỏ */
+#hero .hero-content .deco-item.size-md.pos-bottom-left { background-image: url('https://cdn-img.upanhlaylink.com/img/image_2025050280676470846ccd3d65d6bd524248ce24.jpg'); transform: rotate(12deg);} /* Usagi nhỏ */
+#hero .hero-content .deco-item.size-md.pos-mid-left { width: 120px; height: 120px; background-image: url('https://cdn-img.upanhlaylink.com/img/image_202505025164b50c2691734c37e37dc56ab98ba3.jpg'); transform: translateY(-50%) rotate(-15deg); left: -125px;} /* Chiikawa ăn bánh mì (ghi đè vị trí) */
+#hero .hero-content .deco-item.size-md.pos-mid-right { width: 120px; height: 120px; background-image: url('https://cdn-img.upanhlaylink.com/img/image_2025050300399490e26d962b3d01a0f773f66dee.jpg'); transform: translateY(-50%) rotate(-15deg); right: -125px;} /* Chiikawa ăn bánh mì (ghi đè vị trí) */
+/* Nếu có pos-mid-right cho hero: */
+/* #hero .hero-content .deco-item.size-md.pos-mid-right { background-image: url('...'); } */
+
+/* --- Ảnh cho 16 vị trí MỚI của Hero --- */
+#hero .hero-content .deco-item.size-md.pos-outer-tl { background-image: url('https://cdn-img.upanhlaylink.com/img/image_2025050389f0a1e0abcdf95a0cc020bbf64ef4bd.jpg'); } /* Thay URL */
+#hero .hero-content .deco-item.size-md.pos-outer-tr { background-image: url('https://cdn-img.upanhlaylink.com/img/image_20250503eb4c73689e14dc5165c8e28b6f6d9c76.jpg'); } /* Thay URL */
+#hero .hero-content .deco-item.size-md.pos-outer-bl { background-image: url('https://cdn-img.upanhlaylink.com/img/image_20250503d8f686b6d98175400b93e126f9346eed.jpg'); } /* Thay URL */
+#hero .hero-content .deco-item.size-md.pos-outer-br { background-image: url('https://cdn-img.upanhlaylink.com/img/image_20250503b10d95e456ce94075dbfd6bd3411ebe8.jpg'); } /* Thay URL */
+#hero .hero-content .deco-item.size-md.pos-outer-top-l { background-image: url('https://cdn-img.upanhlaylink.com/img/image_20250503c66148c0d83f72c76e7c652d029cbb36.jpg'); } /* Thay URL */
+#hero .hero-content .deco-item.size-md.pos-outer-top-cl { background-image: url('https://cdn-img.upanhlaylink.com/img/image_202505033374f75ab2affa5fdc3618f90b882e07.jpg'); } /* Thay URL */
+#hero .hero-content .deco-item.size-md.pos-outer-top-cr { background-image: url('https://cdn-img.upanhlaylink.com/img/image_20250503e02606aa752a183e2a5f785b36208503.jpg'); } /* Thay URL */
+#hero .hero-content .deco-item.size-md.pos-outer-top-r { background-image: url('https://cdn-img.upanhlaylink.com/img/image_20250503b684a0ef61ec337322ab6431928bafa6.jpg'); } /* Thay URL */
+#hero .hero-content .deco-item.size-md.pos-outer-bottom-l { background-image: url('https://cdn-img.upanhlaylink.com/img/image_2025050373317c370a9b7322acea343c7253e1f7.jpg'); } /* Thay URL */
+#hero .hero-content .deco-item.size-md.pos-outer-bottom-cl { background-image: url('https://cdn-img.upanhlaylink.com/img/image_20250503b10d95e456ce94075dbfd6bd3411ebe8.jpg'); } /* Thay URL */
+#hero .hero-content .deco-item.size-md.pos-outer-bottom-cr { background-image: url('https://cdn-img.upanhlaylink.com/img/image_20250503755a050124305da850e1e6c0ab154cf2.jpg'); } /* Thay URL */
+#hero .hero-content .deco-item.size-md.pos-outer-bottom-r { background-image: url('https://cdn-img.upanhlaylink.com/img/image_20250503fdf3cea59b447188668146aee751a82b.jpg'); } /* Thay URL */
+#hero .hero-content .deco-item.size-md.pos-outer-left-t { background-image: url('https://cdn-img.upanhlaylink.com/img/image_20250503fa70fe4c859617013bc6f268f10b4ed5.jpg'); } /* Thay URL */
+#hero .hero-content .deco-item.size-md.pos-outer-left-b { background-image: url('https://cdn-img.upanhlaylink.com/img/image_20250503694fb7994388e263f7a62005f061bfae.jpg'); } /* Thay URL */
+#hero .hero-content .deco-item.size-md.pos-outer-right-t { background-image: url('https://cdn-img.upanhlaylink.com/img/image_202505034d2895fe1d58b812946fb52efd3bc174.jpg'); } /* https://cdn-img.upanhlaylink.com/img/image_202505034d2895fe1d58b812946fb52efd3bc174.jpg */
+#hero .hero-content .deco-item.size-md.pos-outer-right-b { background-image: url('https://cdn-img.upanhlaylink.com/img/image_202505039999744a460184c56239bc0f0ff0e03c.jpg'); } /* Thay URL */
+
+
+/* --- Section Stats Decorations --- */
+#stats .section-content-wrapper .deco-item.size-lg.pos-top-left { background-image: url('https://cdn-img.upanhlaylink.com/img/image_20250502eef5691b700bcefa8d831d918b4c46c6.jpg'); border-radius: 50%; transform:translateY(05%); right:20px } /* Hachiware tròn */
+#stats .section-content-wrapper .deco-item.size-md.pos-top-right { background-image: url('https://cdn-img.upanhlaylink.com/img/image_2025050249b227e363a9d04f3c5d09c912a1f8af.jpg');} /* Chiikawa trái tim */
+#stats .section-content-wrapper .deco-item.size-md.pos-bottom-right { background-image: url('https://cdn-img.upanhlaylink.com/img/image_202505024105ddbbc99267627d8e63145a938305.jpg');transform: translateY(-50%) rotate(-15deg); bottom: -150px; ; right: 100px;} /* Momonga */
+#stats .section-content-wrapper .deco-item.size-md.pos-bottom-left { background-image: url('https://cdn-img.upanhlaylink.com/img/image_20250502d587be331a4f11262be00d9a589352bf.jpg');transform: translateY(-50%) rotate(15deg); bottom: -150px;left: 100px;} /* Usagi Ya-ha */
+#stats .section-content-wrapper .deco-item.size-md.pos-mid-right { background-image: url('https://cdn-img.upanhlaylink.com/img/image_2025050216ccf68fea446defbe1841f29539f7f5.jpg');} /* Kurimanjuu */
+#stats .section-content-wrapper .deco-item.size-md.pos-mid-left { background-image: url('https://cdn-img.upanhlaylink.com/img/image_2025050339f42d442a924e55ef64854f25e24c34.jpg');transform: translateY(-50%) rotate(-15deg); bottom: -150px;left: -100px} /* Kurimanjuu */
+/* Ảnh cho vị trí bổ sung */
+#stats .section-content-wrapper .deco-item.size-md.pos-top-centerish { background-image: url('...'); } /* Thay URL */
+#stats .section-content-wrapper .deco-item.size-md.pos-bottom-centerish { background-image: url('https://cdn-img.upanhlaylink.com/img/image_202505031801a924eb216c2ca0ae2ca98bf73551.jpg');transform: translateY(-50%) rotate(0deg); width: 150px; height: 150px ; bottom: -200px; ; left: 45%; } /* Thay URL */
+/* #stats .section-content-wrapper .deco-item.size-md.pos-mid-left { background-image: url('...'); } */ /* Nếu có */
+
+
+/* --- Section Letter Decorations --- */
+#letter .section-content-wrapper .deco-item.size-lg.pos-top-left { background-image: url('https://cdn-img.upanhlaylink.com/img/image_202505023506489a428acdf661e5b94d3bca9450.jpg'); } /* Chiikawa cầm thư */
+#letter .section-content-wrapper .deco-item.size-md.pos-top-right { background-image: url('https://cdn-img.upanhlaylink.com/img/image_202505021c648afdb3ee276bb4b912012d2b8f60.jpg'); } /* Bút chì màu */
+#letter .section-content-wrapper .deco-item.size-md.pos-bottom-right { background-image: url('https://cdn-img.upanhlaylink.com/img/image_20250502e49d2e0bbd114459d5d5744efe13def2.jpg');transform: translateY(-50%) rotate(-15deg); bottom: -150px; ; right: 100px; } /* Hachiware suy nghĩ */
+#letter .section-content-wrapper .deco-item.size-md.pos-bottom-left { background-image: url('https://cdn-img.upanhlaylink.com/img/image_20250502e2a7be8ff6d3b5df684295e9f066b716.jpg'); transform: translateY(-50%) rotate(15deg); bottom: -150px;left: 100px;} /* Hoa */
+/* Ảnh cho vị trí bổ sung */
+#letter .section-content-wrapper .deco-item.size-md.pos-mid-left { background-image: url('https://cdn-img.upanhlaylink.com/img/image_20250503e80eb00018b08313153a23f04ff1cd20.jpg'); transform: translateY(-50%) rotate(-15deg); bottom: -150px;left: -100px} /* Thay URL */
+#letter .section-content-wrapper .deco-item.size-md.pos-mid-right { background-image: url('https://cdn-img.upanhlaylink.com/img/image_2025050342c6a2d5b31eda0de58298ade429eceb.jpg'); } /* Thay URL */
+#letter .section-content-wrapper .deco-item.size-md.pos-bottom-centerish { background-image: url('https://cdn-img.upanhlaylink.com/img/image_20250503e418ceccf1e00c51654b05b5c97cefc2.jpg'); ;transform: translateY(-50%) rotate(0deg); width: 150px; height: 150px ; bottom: -200px; ; left: 45%;} /* Thay URL */
+
+/* Tem thư (CSS bạn cung cấp đã có ảnh) */
+/* Lưu ý quan trọng: Trong HTML, thẻ div cho tem thư phải có cả 3 class: deco-item size-md deco-letter-stamp */
+#letter .letter-content .deco-item.deco-letter-stamp {
+    width: 70px; height: 70px; top: 15px; right: 20px; transform: rotate(12deg); opacity: 0.8;
+    background-image: url('https://cdn-img.upanhlaylink.com/img/image_2025050275a528a13690b29a7065f89ce7c8bbbc.jpg'); /* Hachiware tròn tem */
+    border-radius: 50%; border: 2px dashed var(--cute-accent-pink); pointer-events: none;
+    position: absolute; /* Đảm bảo là absolute để top/right hoạt động */
+    z-index: 11; /* Nằm trên nội dung thư một chút */
+}
+
+
+/* --- Section Gallery Decorations --- */
+#gallery .section-content-wrapper .deco-item.size-md.pos-top-left { background-image: url('https://cdn-img.upanhlaylink.com/img/image_202505021bc3c2b213fc0a0cb4b1bfa031ad920b.jpg'); transform: translateY(0%) rotate(5deg);} /* Chiikawa máy ảnh (ghi đè transform) */
+#gallery .section-content-wrapper .deco-item.size-md.pos-top-right { background-image: url('https://cdn-img.upanhlaylink.com/img/image_2025050221b59f4c768f5d073fb24d2cc1ad79ec.jpg'); border-radius: 50%; } /* Ngôi sao */
+#gallery .section-content-wrapper .deco-item.size-md.pos-bottom-right { background-image: url('https://cdn-img.upanhlaylink.com/img/image_20250502a6ab6a212b5457cb6080b266643b6601.jpg'); } /* Khung ảnh polaroid */
+#gallery .section-content-wrapper .deco-item.size-md.pos-bottom-left { background-image: url('https://cdn-img.upanhlaylink.com/img/image_2025050222efd758b8cbfa6d327463ab20e67218.jpg'); } /* Hachiware chụp ảnh */
+#gallery .section-content-wrapper .deco-item.size-md.pos-mid-right { background-image: url('https://cdn-img.upanhlaylink.com/img/image_202505024338190d91d324d09e62cb875ddfd08c.jpg'); transform: translateY(-50%) rotate(-15deg); right: -125px; } /* Thỏ hồng (ghi đè transform và right) */
+#gallery .section-content-wrapper .deco-item.size-md.pos-mid-left { background-image: url('https://cdn-img.upanhlaylink.com/img/image_202505024338190d91d324d09e62cb875ddfd08c.jpg'); transform: translateY(-50%) rotate(15deg) scaleX(-1); left: -120px; } /* Thỏ hồng lật ngược (ghi đè transform và left) */
+/* Ảnh cho size-lg nếu có */
+/* #gallery .section-content-wrapper .deco-item.size-lg.pos-top-left { background-image: url('...'); } */
+
+/* --- Ảnh cho 16 vị trí MỚI của Gallery --- */
+#gallery .section-content-wrapper .deco-item.size-md.pos-outer-tl { background-image: url('https://cdn-img.upanhlaylink.com/img/image_20250503f664e5dfb434170f1df562ed754d983c.jpg'); } /* Thay URL */
+#gallery .section-content-wrapper .deco-item.size-md.pos-outer-tr { background-image: url('https://cdn-img.upanhlaylink.com/img/image_202505039fa3e0523421571d5d0a4c99057f449a.jpg'); } /* Thay URL */
+#gallery .section-content-wrapper .deco-item.size-md.pos-outer-bl { background-image: url('https://cdn-img.upanhlaylink.com/img/image_2025050398c3329215aa2999f347367bc8e2f1bd.jpg'); } /* Thay URL */
+#gallery .section-content-wrapper .deco-item.size-md.pos-outer-br { background-image: url('https://cdn-img.upanhlaylink.com/img/image_2025050358303ee52545a2a754e63c02dff9fa65.jpg'); } /* Thay URL */
+#gallery .section-content-wrapper .deco-item.size-md.pos-outer-top-l { background-image: url('https://cdn-img.upanhlaylink.com/img/image_20250503ea42a5804c044ebc8334050ff8a10690.jpg'); } /* Thay URL */
+#gallery .section-content-wrapper .deco-item.size-md.pos-outer-top-cl { background-image: url('https://cdn-img.upanhlaylink.com/img/image_202505033e7c85948a422620c28ca11af64a8be0.jpg'); } /* Thay URL */
+#gallery .section-content-wrapper .deco-item.size-md.pos-outer-top-cr { background-image: url('https://cdn-img.upanhlaylink.com/img/image_2025050340f5a1c6769154f47154a3eacf4aaef6.jpg'); } /* Thay URL */
+#gallery .section-content-wrapper .deco-item.size-md.pos-outer-top-r { background-image: url('https://cdn-img.upanhlaylink.com/img/image_20250503ef53f7faacc63af2d8a617b47b2d7ded.jpg'); } /* Thay URL */
+#gallery .section-content-wrapper .deco-item.size-md.pos-outer-bottom-l { background-image: url('https://cdn-img.upanhlaylink.com/img/image_202505030dc1f2f0f540a91d2f19440c64dab153.jpg'); } /* Thay URL */
+#gallery .section-content-wrapper .deco-item.size-md.pos-outer-bottom-cl { background-image: url('https://cdn-img.upanhlaylink.com/img/image_202505033dd6d73ffcd78c83a73e107134f8adc7.jpg'); } /* Thay URL */
+#gallery .section-content-wrapper .deco-item.size-md.pos-outer-bottom-cr { background-image: url('https://cdn-img.upanhlaylink.com/img/image_20250503a0e14d92818ada464ed375d55f2f6836.jpg'); } /* Thay URL */
+#gallery .section-content-wrapper .deco-item.size-md.pos-outer-bottom-r { background-image: url('https://cdn-img.upanhlaylink.com/img/image_20250503e33c2ea2c57d1871fcb82d5b72166f4a.jpg'); } /* Thay URL */
+#gallery .section-content-wrapper .deco-item.size-md.pos-outer-left-t { background-image: url('https://cdn-img.upanhlaylink.com/img/image_20250503cea481f2e0bc932e9d3c992751cd122d.jpg'); } /* Thay URL */
+#gallery .section-content-wrapper .deco-item.size-md.pos-outer-left-b { background-image: url('https://cdn-img.upanhlaylink.com/img/image_202505037f77009b5ced4bb14a1d6d417fdb77d2.jpg'); } /* Thay URL */
+#gallery .section-content-wrapper .deco-item.size-md.pos-outer-right-t { background-image: url('https://cdn-img.upanhlaylink.com/img/image_20250503a960ccc9a34de70c8966133b94ea4920.jpg'); } /* Thay URL */
+#gallery .section-content-wrapper .deco-item.size-md.pos-outer-right-b { background-image: url('https://cdn-img.upanhlaylink.com/img/image_202505035fadb079bbf2e767586883659d45c247.jpg'); } /* Thay URL */
+
+
+/* --- Section Video Decorations --- */
+#video .section-content-wrapper .deco-item.size-lg.pos-top-left { background-image: url('https://cdn-img.upanhlaylink.com/img/image_20250502e042994d77827dbd5c413480747b7824.jpg');transform: translateY(20%) rotate(-15deg); width: 120px; height: 120px; left: -70px; } /* Chiikawa xem TV */
+#video .section-content-wrapper .deco-item.size-md.pos-top-right { background-image: url('https://cdn-img.upanhlaylink.com/img/image_20250502993cc1192ba53ed5c1c60cdc50973bf8.jpg'); } /* Popcorn */
+#video .section-content-wrapper .deco-item.size-md.pos-bottom-right { background-image: url('https://cdn-img.upanhlaylink.com/img/image_202505026aebeca50bd1cbd106cb139a3eab3ca4.jpg'); } /* Usagi vẫy tay */
+#video .section-content-wrapper .deco-item.size-md.pos-bottom-left { background-image: url('https://cdn-img.upanhlaylink.com/img/image_202505023a19b0a7b2f0d62a564a5888b4a13d80.jpg'); border-radius: 50%; } /* Nút Play */
+#video .section-content-wrapper .deco-item.size-md.pos-mid-left { background-image: url('https://cdn-img.upanhlaylink.com/img/image_202505025cd8508b2a5ddcd5621882810de01bc2.jpg'); } /* Hachiware ngồi */
+#video .section-content-wrapper .deco-item.size-md.pos-mid-right { background-image: url('https://cdn-img.upanhlaylink.com/img/image_202505025cd8508b2a5ddcd5621882810de01bc2.jpg'); transform: translateY(-50%) rotate(-15deg) scaleX(-1); right: -155px; } /* Hachiware ngồi lật ngược (ghi đè transform và right) */
+/* Ảnh cho vị trí bổ sung */
+#video .section-content-wrapper .deco-item.size-md.pos-top-centerish { background-image: url('...'); } /* Thay URL */
+#video .section-content-wrapper .deco-item.size-md.pos-bottom-centerish { background-image: url('...'); } /* Thay URL */
+
+
+/* --- Section Closing Decorations --- */
+/* --- Section Closing Decorations --- */
+/* Thêm vào #closing .section-content-wrapper */
+
+/* === Trang Đăng Nhập (index.html) === */
+body.login-page {
+    display: flex; justify-content: center; align-items: center; min-height: 100vh; padding: 30px;
+    background: linear-gradient(145deg, var(--cute-gradient-start) 0%, var(--cute-gradient-end) 100%);
+}
+.login-container {
+    background-color: var(--cute-content-cream); padding: 45px 55px; border-radius: var(--border-radius-rounder);
+    box-shadow: 0 15px 50px var(--cute-shadow-color); text-align: center; max-width: 500px; width: 100%; position: relative;
+    border: 5px dotted var(--cute-accent-pink); outline: 6px solid var(--cute-content-cream); outline-offset: -11px;
+}
+/* Login Decorations - Sử dụng class riêng nhưng kế thừa .deco-item nếu có trong HTML */
+.login-container .deco-item.deco-login-1 {
+    width: 90px; height: 90px; top: -45px; left: -40px; transform: rotate(-20deg);
+    background-image: url('https://cdn-img.upanhlaylink.com/img/image_20250502757ba8b3ce83043143063d8353bef1da.jpg'); /* Chiikawa cầm chìa khóa */
+}
+.login-container .deco-item.deco-login-2 {
+    width: 80px; height: 80px; bottom: -40px; right: -35px; transform: rotate(15deg);
+    background-image: url('https://cdn-img.upanhlaylink.com/img/image_20250502870ba5affd95980ebbae64c37f6894f3.jpg'); /* Ngôi sao */
+}
+/* Style các element login khác */
+.login-title { font-size: 3rem; color: var(--cute-accent-pink); margin-bottom: 15px; }
+.anniversary-info { font-size: 1.05rem; color: var(--cute-text-dark); margin-bottom: 35px; font-weight: 500; }
+.anniversary-info p { margin-bottom: 8px; }
+.login-form .form-instruction { font-size: 1.15rem; margin-bottom: 20px; color: var(--cute-text-dark); font-weight: 700; }
+.login-form .form-group { margin-bottom: 25px; text-align: left; }
+.login-form .form-label { display: block; font-weight: 700; margin-bottom: 10px; font-size: 1rem; color: var(--cute-accent-brown); }
+.login-form .form-input {
+    width: 100%; padding: 15px 20px; border: 2px solid var(--cute-border-color); border-radius: var(--border-radius-soft);
+    font-family: var(--font-body); font-size: 1.05rem; font-weight: 500; color: var(--cute-text-dark); background-color: #fff; transition: all var(--transition-cute);
+}
+.login-form .form-input:focus { outline: none; border-color: var(--cute-accent-pink); box-shadow: 0 0 0 4px rgba(255, 112, 166, 0.25); background-color: #fff9fb; }
+.login-form .form-input::placeholder { color: #b8afa8; font-weight: 400; }
+.login-form .submit-button {
+    background: linear-gradient(to right, var(--cute-accent-pink), var(--cute-darker-pink)); color: var(--cute-text-light); font-family: var(--font-heading);
+    font-size: 1.5rem; font-weight: 700; border: none; padding: 15px 40px; border-radius: var(--border-radius-rounder); cursor: pointer;
+    transition: all var(--transition-cute); box-shadow: 0 6px 18px rgba(255, 112, 166, 0.45); display: inline-block; margin-top: 20px;
+}
+.login-form .submit-button:hover { transform: translateY(-5px) scale(1.04); box-shadow: 0 10px 25px rgba(255, 112, 166, 0.6); }
+.login-form .submit-button:active { transform: translateY(-2px) scale(0.97); }
+.login-form .error-message { color: #c00; font-size: 0.95rem; font-weight: 700; margin-top: 20px; }
+.login-form .error-message.apply-shake { animation: shakeAnimation 0.4s ease-in-out; }
+@keyframes shakeAnimation { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-5px); } 50% { transform: translateX(5px); } 75% { transform: translateX(-5px); } }
+
+/* === Trang Nội Dung (main.html) === */
+section { padding-top: var(--base-padding); padding-bottom: var(--base-padding); position: relative; }
+
+/* --- Section Hero (`#hero`) --- */
+#hero {
+    min-height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; position: relative;
+    color: var(--cute-text-dark); padding: 50px 20px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0) 30%), var(--cute-bg-pink);
+}
+.hero-content {
+    background-color: rgba(255, 248, 250, 0.85);
+    padding: 40px 50px; border-radius: var(--border-radius-rounder); backdrop-filter: blur(10px);
+    border: 3px solid rgba(255, 255, 255, 0.8); box-shadow: 0 10px 40px var(--cute-shadow-color); max-width: 850px; position: relative; /* Để chứa deco-item */
+}
+/* Nhớ thêm các <div class="deco-item size-... pos-..."> vào trong .hero-content trong HTML */
+.hero-content h1 { font-size: 3rem; color: var(--cute-accent-brown); margin-bottom: 0.3em; }
+.hero-content h2 { font-size: 4.2rem; color: var(--cute-accent-pink); margin-bottom: 0.7em; text-shadow: 1px 1px 2px #fff; }
+.hero-content p { font-size: 1.2rem; color: var(--cute-text-dark); margin-bottom: 2em; font-weight: 500; }
+.scroll-down-indicator { margin-top: 20px; font-size: 2.2rem; color: var(--cute-accent-pink); animation: bounceCute 2.2s infinite ease-in-out; }
+@keyframes bounceCute { 0%, 100% { transform: translateY(0); opacity: 1; } 50% { transform: translateY(-15px); opacity: 0.6; } }
+
+/* --- Section Stats (`#stats`) --- */
+/* Áp dụng .section-content-wrapper cho phần nội dung của #stats */
+#stats .section-content-wrapper {
+    background: linear-gradient(to bottom, #fff 20%, var(--cute-content-cream) 100%);
+    /* Thêm class wavy-border... nếu muốn */
+}
+/* Nhớ thêm các <div class="deco-item size-... pos-..."> vào trong #stats .section-content-wrapper trong HTML */
+.stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 35px; max-width: 1000px; margin: 40px auto 0; }
+.stat-item {
+    background: linear-gradient(145deg, #ffffff, #fff9fb);
+    padding: 35px 20px; text-align: center; border-radius: var(--border-radius-soft);
+    border: 2px solid var(--cute-border-color); transition: all var(--transition-cute); position: relative;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+}
+.stat-item:hover {
+    transform: translateY(-10px) scale(1.04); border-color: var(--cute-accent-pink);
+    box-shadow: 0 10px 30px var(--cute-shadow-color); background: var(--cute-content-cream);
+}
+.stat-icon {
+    width: 70px; height: 70px; margin: 0 auto 25px; background-color: var(--cute-soft-pink);
+    border-radius: 50%; border: 4px solid #fff; outline: 3px solid var(--cute-accent-pink);
+    box-shadow: 0 5px 10px rgba(0,0,0,0.1); display: flex; align-items: center; justify-content: center;
+    background-size: 70%; background-repeat: no-repeat; background-position: center;
+    /* Ví dụ: background-image cho icon đầu tiên (bạn sẽ cần thêm ID hoặc class riêng nếu muốn icon khác nhau) */
+    /* background-image: url('...'); */
+}
+.stat-number { font-size: 3rem; font-weight: 700; color: var(--cute-accent-pink); margin-bottom: 8px; font-family: var(--font-heading); }
+.stat-label { font-size: 1rem; color: var(--cute-text-dark); font-weight: 500; }
+
+/* --- Section Letter (`#letter`) --- */
+/* Áp dụng .section-content-wrapper cho phần nội dung của #letter */
+#letter .section-content-wrapper {
+    padding-top: calc(var(--content-padding) + 30px);
+    /* Thêm class wavy-border... nếu muốn */
+}
+/* Nhớ thêm các <div class="deco-item size-... pos-..."> vào trong #letter .section-content-wrapper trong HTML */
+.letter-content {
+    background-color: #fff; padding: 55px 65px; border-radius: var(--border-radius-soft);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1); max-width: 800px; margin: 0 auto;
+    font-size: 1.1rem; color: var(--cute-text-dark); border: 1px solid #eee; position: relative; /* Để chứa tem */
+    /* background-image: url('../images/decorations/paper-texture.png'); */
+}
+/* Tem thư đã được định nghĩa ảnh ở trên */
+/* Nhớ thêm <div class="deco-item size-md deco-letter-stamp"></div> vào trong .letter-content */
+.letter-content p:first-child { margin-top: 0; }
+.letter-content .signature { text-align: right; margin-top: 45px; font-family: var(--font-heading); font-size: 2rem; color: var(--cute-accent-pink); }
+.letter-signature-heart {
+    display: inline-block; width: 25px; height: 22px; margin-left: 5px; vertical-align: middle;
+    background-image: url('https://i.pinimg.com/originals/14/3e/0b/143e0b259ac9e7896d55c7e82593ff59.png'); /* Trái tim nhỏ */
+    background-size: contain; background-repeat: no-repeat; background-position: center;
+}
+
+/* --- Section Gallery (`#gallery`) --- */
+/* Áp dụng .section-content-wrapper */
+#gallery .section-content-wrapper {
+    background: linear-gradient(to top, #fff 10%, var(--cute-content-cream) 100%);
+    /* Thêm class wavy-border... nếu muốn */
+}
+/* Nhớ thêm các <div class="deco-item size-... pos-..."> vào trong #gallery .section-content-wrapper trong HTML */
+.gallery-intro { text-align: center; max-width: 650px; margin: -1em auto 3em; color: var(--cute-text-dark); font-size: 1.15rem; }
+.photo-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 25px; }
+.photo-item {
+    border-radius: 15px; overflow: hidden; position: relative;
+    box-shadow: 0 6px 15px var(--cute-shadow-color); transition: all var(--transition-cute);
+    border: 5px solid #fff; background-color: #fff; padding: 5px;
+}
+.photo-item:hover { transform: scale(1.07) rotate(2deg); box-shadow: 0 10px 25px var(--cute-shadow-color); border-color: var(--cute-soft-pink); outline: 2px solid var(--cute-accent-pink); }
+.photo-item a { display: block; }
+.photo-item img { width: 100%; aspect-ratio: 1 / 1; object-fit: cover; border-radius: 10px; }
+
+/* --- Section Video (`#video`) --- */
+/* Trong file style.css */
+
+/* Style cho container chứa video */
+.video-wrapper {
+    /* === THAY ĐỔI CHÍNH === */
+    max-width: 450px; /* <-- ĐẶT CHIỀU RỘNG TỐI ĐA BẠN MUỐN CHO VIDEO DỌC */
+    max-height: 1600px ;
+                     /* Ví dụ: 360px, 400px, 320px, 50%... */
+    margin-left: auto;   /* Căn giữa container */
+    margin-right: auto;  /* Căn giữa container */
+    /* Bỏ các thuộc tính padding-bottom, height: 0 nếu bạn đã thêm cho iframe trước đó */
+    /* padding-bottom: 56.25%; */ /* XÓA hoặc GHI CHÚ */
+    /* height: 0; */ /* XÓA hoặc GHI CHÚ */
+
+    /* === Styling tùy chọn === */
+    border-radius: var(--border-radius-soft); /* Bo góc mềm mại */
+    box-shadow: 0 8px 25px var(--cute-shadow-color); /* Thêm bóng đổ */
+    overflow: hidden; /* Đảm bảo video bên trong cũng bo góc */
+    background: #f0f0f0; /* Màu nền nhẹ trong khi chờ tải */
+}
+
+/* Style cho chính thẻ <video> bên trong .video-wrapper */
+.video-wrapper video {
+    display: block; /* Loại bỏ khoảng trống thừa có thể có bên dưới */
+    width: 100%;    /* Quan trọng: Video sẽ luôn chiếm 100% chiều rộng của .video-wrapper */
+    height: auto;   /* Quan trọng: Chiều cao sẽ tự điều chỉnh để giữ đúng tỷ lệ khung hình dọc */
+    border-radius: inherit; /* Bo góc theo container */
+}
+    /* Thêm class wavy-border... nếu muốn */
+/* Nhớ thêm các <div class="deco-item size-... pos-..."> vào trong #video .section-content-wrapper trong HTML */
+.video-intro { text-align: center; max-width: 650px; margin: -1em auto 2.5em; color: var(--cute-text-dark); font-size: 1.15rem; }
+.video-wrapper {
+    max-width: 900px; margin: 0 auto; border-radius: var(--border-radius-soft); overflow: hidden;
+    box-shadow: 0 12px 35px rgba(0,0,0,0.18); border: 8px solid var(--cute-content-cream);
+    outline: 4px solid var(--cute-accent-pink); position: relative; background-color: #333;
+}
+
+/* --- Section Closing (`#closing`) --- */
+/* Áp dụng .section-content-wrapper */
+#closing .section-content-wrapper {
+    text-align: center;
+    background: radial-gradient(circle at top center, #fff 40%, var(--cute-content-cream) 100%);
+    /* Thêm class wavy-border... nếu muốn */
+}
+/* Nhớ thêm các <div class="deco-item size-... pos-..."> vào trong #closing .section-content-wrapper trong HTML */
+.closing-content { max-width: 950px; margin: 0 auto; }
+.big-heart-placeholder {
+    width: 140px; height: 130px; margin: 0 auto 35px;
+    background-image: url('https://cdn-img.upanhlaylink.com/img/image_202505021a864a59cdcb48ae7f8ac51902ca7c4e.jpg'); /* Ảnh trái tim lớn Chiikawa */
+    background-size: contain; background-repeat: no-repeat; background-position: center;
+    animation: pulseCute 2s infinite ease-in-out;
+}
+/* @keyframes pulseCute đã định nghĩa ở trên */
+.closing-title { font-size: 3rem; color: var(--cute-darker-pink); margin-bottom: 1em; }
+.closing-message, .promise { font-size: 1.2rem; color: var(--cute-text-dark); opacity: 0.9; margin-bottom: 1.8em; }
+.promise { font-weight: 700; font-style: italic; color: var(--cute-accent-pink); }
+.final-names { margin-top: 40px; font-family: var(--font-heading); font-size: 2.4rem; color: var(--cute-accent-brown); }
+
+/* --- Footer (`.main-footer`) --- */
+.main-footer {
+    background: linear-gradient(to bottom, var(--cute-darker-pink), var(--cute-accent-pink));
+    color: rgba(255, 255, 255, 0.95); text-align: center; padding: 40px 15px;
+    font-size: 1rem; font-weight: 500; margin-top: var(--base-padding); position: relative;
+    border-top: 5px dashed rgba(255, 255, 255, 0.6);
+}
+.main-footer p { margin-bottom: 0; }
+.footer-heart-placeholder {
+    display: inline-block; width: 22px; height: 20px; margin: 0 5px; vertical-align: -4px;
+    background-image: url('https://cdn-img.upanhlaylink.com/img/image_2025050222efd758b8cbfa6d327463ab20e67218.jpg'); /* Trái tim nhỏ */
+    background-size: contain; background-repeat: no-repeat; background-position: center;
+}
+
+/* --- Responsive --- */
+/* (Giữ nguyên phần responsive bạn đã cung cấp, nó đã được điều chỉnh cho cấu trúc mới) */
+@media (max-width: 1200px) {
+    :root { --container-width: 960px; }
+    /* Điều chỉnh kích thước và vị trí deco-item cho màn hình nhỏ hơn */
+    .deco-item.size-lg { width: 200px; height: 200px; }
+    .deco-item.size-md { width: 85px; height: 85px; }
+
+    .deco-item.pos-top-left { top: -70px; left: -90px; }
+    .deco-item.pos-top-right { top: -70px; right: -90px; }
+    .deco-item.pos-bottom-left { bottom: -80px; left: -100px; }
+    .deco-item.pos-bottom-right { bottom: -80px; right: -100px; }
+
+    .deco-item.size-md.pos-top-left { top: -35px; left: -45px; }
+    .deco-item.size-md.pos-top-right { top: -35px; right: -45px; }
+    .deco-item.size-md.pos-bottom-left { bottom: -40px; left: -50px; }
+    .deco-item.size-md.pos-bottom-right { bottom: -40px; right: -50px; }
+    .deco-item.size-md.pos-mid-left { left: -50px; }
+    .deco-item.size-md.pos-mid-right { right: -50px; }
+}
+
+@media (max-width: 992px) {
+    :root { --base-padding: 60px; --content-padding: 40px; }
+    h2.section-title { font-size: 2.8rem; }
+
+    .deco-item.size-lg { width: 160px; height: 160px; }
+    .deco-item.size-md { width: 75px; height: 75px; }
+
+    .deco-item.pos-top-left { top: -60px; left: -70px; }
+    .deco-item.pos-top-right { top: -60px; right: -70px; }
+    .deco-item.pos-bottom-left { bottom: -70px; left: -80px; }
+    .deco-item.pos-bottom-right { bottom: -70px; right: -80px; }
+
+    .deco-item.size-md.pos-top-left { top: -30px; left: -40px; }
+    .deco-item.size-md.pos-top-right { top: -30px; right: -40px; }
+    .deco-item.size-md.pos-bottom-left { bottom: -35px; left: -45px; }
+    .deco-item.size-md.pos-bottom-right { bottom: -35px; right: -45px; }
+    .deco-item.size-md.pos-mid-left { left: -40px; }
+    .deco-item.size-md.pos-mid-right { right: -40px; }
+
+    .photo-grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 20px; }
+    .stats-grid { grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 30px; }
+    .hero-content h2 { font-size: 3.5rem; }
+    .letter-content { padding: 45px 50px; }
+}
+
+@media (max-width: 768px) {
+    html { font-size: 15px; }
+    :root { --base-padding: 50px; --content-padding: 30px; --border-radius-soft: 20px; --border-radius-rounder: 40px; }
+    h2.section-title { font-size: 2.4rem; margin-bottom: 1.5em; }
+
+    /* Ẩn bớt deco item trên mobile để đỡ rối */
+    .deco-item.size-lg { width: 120px; height: 120px; top:-40px; left: -50px; }
+    .deco-item.size-md { width: 65px; height: 65px; }
+    .deco-item.pos-top-right,
+    .deco-item.pos-bottom-left,
+    .deco-item.pos-mid-left,
+    .deco-item.pos-mid-right { display: none; } /* Ẩn nhiều hơn */
+    .deco-item.pos-top-left { top: -40px; left: -50px; } /* Giữ lại cái này */
+    .deco-item.pos-bottom-right { bottom: -30px; right: -30px; } /* Giữ lại cái này */
+
+    .hero-content { padding: 30px 35px; }
+    .hero-content h1 { font-size: 2.2rem; } .hero-content h2 { font-size: 3rem; }
+    .login-container { padding: 35px 30px; }
+    .letter-content { padding: 35px 35px; }
+    .photo-grid { grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 15px; }
+    .stats-grid { grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); }
+    .stat-icon { width: 60px; height: 60px; }
+    .stat-number { font-size: 2.5rem; }
+    .closing-title { font-size: 2.4rem; }
+    .big-heart-placeholder { width: 100px; height: 90px; }
+}
+
+@media (max-width: 576px) {
+    html { font-size: 14px; }
+    :root { --base-padding: 40px; --content-padding: 25px; --border-radius-soft: 15px; --border-radius-rounder: 30px; }
+    h2.section-title { font-size: 2.1rem; }
+
+    /* Ẩn gần hết deco trên màn hình rất nhỏ */
+    .deco-item.size-lg { width: 90px; height: 90px; top: -30px; left: -35px; }
+    .deco-item.size-md { display: none; } /* Ẩn hết size md */
+    .deco-item.pos-top-left { top: -30px; left: -35px; } /* Chỉ giữ lại 1 cái lớn */
+    .deco-item.pos-top-right,
+    .deco-item.pos-bottom-left,
+    .deco-item.pos-bottom-right,
+    .deco-item.pos-mid-left,
+    .deco-item.pos-mid-right { display: none; }
+
+    .hero-content { padding: 25px; }
+    .hero-content h1 { font-size: 2rem; } .hero-content h2 { font-size: 2.6rem; }
+    .login-container { padding: 30px 20px; border-width: 4px; outline-width: 4px; outline-offset: -8px;}
+    .login-title { font-size: 2.4rem; }
+    .login-form .submit-button { font-size: 1.3rem; padding: 12px 30px; }
+    .photo-grid { grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 15px; }
+    .stats-grid { grid-template-columns: 1fr; gap: 20px; max-width: 300px; margin: 30px auto 0; }
+    .stat-item { padding: 25px 15px; }
+    .letter-content { padding: 30px 25px; font-size: 1rem; }
+    .video-wrapper { border-width: 6px; outline-width: 3px; }
+    .closing-title { font-size: 2.2rem; }
+    .big-heart-placeholder { width: 90px; height: 80px; }
+    .final-names { font-size: 2rem; }
+    .main-footer { padding: 30px 15px; font-size: 0.9rem; border-top-width: 4px; }
+}
